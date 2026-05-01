@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>John C.</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="John C.">
+<meta property="og:url" content="https://blog.anthnyjhn.com/">
+<meta property="og:site_name" content="John C.">
+<meta property="og:locale" content="en_US">
+<meta property="article:author" content="John Caronongan">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="John C." type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fork-awesome@1.2.0/css/fork-awesome.min.css">
+
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">John C.</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/atom.xml" title="RSS Feed"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="Search"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://blog.anthnyjhn.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-my-first-home-server/index" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/my-first-home-server/index/" class="article-date">
+  <time class="dt-published" datetime="2025-11-29T11:27:03.000Z" itemprop="datePublished">2025-11-29</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Networking/">Networking</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/my-first-home-server/index/">My First Home Server</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>As a student, I’ve always used Google Drive and iCloud for cloud storage but I quickly realized that I have no control of my own data and I’m tied to these cloud platforms. So, I started searching on how to make my own cloud storage. That’s when I got hooked into homelabbing.</p>
+<p>Homelabbing is a hobby of building and managing personal server infrastrature. For me, that sounded fun and challenging so I started looking for the hardware that I’m going to start with.</p>
+<p><img src="/hpProdesk.jpg" alt="HP Prodesk 400 G2"></p>
+<h2 id="Hardware"><a href="#Hardware" class="headerlink" title="Hardware"></a>Hardware</h2><p>What I found was a <strong>HP Prodesk 400 G2</strong> from late 2015. It might sound like it’s old and incapable of doing modern tasks but it’s actually a great computer to use as a server. It has an <strong>Intel i5 - 4590</strong> (4c&#x2F;4t), <strong>4GB-DDR3 RAM</strong> and <strong>1TB HDD</strong>.</p>
+<p>While testing the computer, I found that 4GB RAM wasn’t enough for the OS that I want to use called <strong>Proxmox</strong> (<em>more on that later</em>).</p>
+<p>So I decided to buy extra RAM sticks. Unfortunately, due to the RAM shortage, RAM prices skyrocketed. So I just decided to buy a stick 8GB RAM to have a <strong>total of 12GB DDR3 RAM</strong> instead of 16GB. But for my use case I think that should be enough, at least <em>for now…</em></p>
+<p>I also added a <strong>128GB SSD</strong> as my boot drive so it boots faster and have more trust that the drive is not gonna fail.</p>
+<h2 id="Software"><a href="#Software" class="headerlink" title="Software"></a>Software</h2><p>For software, I decided to use <strong>Proxmox</strong> as my operating system. Proxmox is an open-source virtualization management platform where you can create multiple virtual machines in it. It’s like the <em>Microsoft Hyper-V</em> from Windows.</p>
+<p>I used <strong>Balena Etcher</strong> to burn Proxmox in my Flash drive. It’s very quick and simple process. I highly recommend this software for beginners.</p>
+<h2 id="Configuration"><a href="#Configuration" class="headerlink" title="Configuration"></a>Configuration</h2><p>I installed <strong>Proxmox</strong> in my <em>Server</em>. I followed the guide from Proxmox website, <a target="_blank" rel="noopener" href="https://www.proxmox.com/en/products/proxmox-virtual-environment/get-started">Proxmox - get started</a>. It was pretty straight forward and only took me 30 minutes to install.</p>
+<p>After that, I opened my ISP router’s management console to give my Server a specific IP Address. This allows me to have my server in one specific local ip address for easy configuration.</p>
+<p>I also used a dynamic dns from <strong><a target="_blank" rel="noopener" href="https://www.duckdns.org/">duckdns.org</a></strong>. This allows me to have a domain that is associated with my Public IP</p>
+<p>Then I started creating my virtual machines. One is for my <strong>personal use</strong> - this is where my <strong>NAS</strong>, <strong>VPN</strong>, <strong>Ad-Blocker</strong> and other personal apps is gonna live, and the other one is my <strong>Web Server</strong> - where I will use to host my website <a target="_blank" rel="noopener" href="https://anthnyjhn.com/">anthnyjhn.com</a> and my other domains.</p>
+<p>I decided to use <strong>Ubuntu Server 24.04 LTS</strong> as my operating system because I’ve been using Ubuntu as my main operating system for the past 4 years.</p>
+<h3 id="Node-1-HomeServer-Ubuntu-24-04"><a href="#Node-1-HomeServer-Ubuntu-24-04" class="headerlink" title="Node 1 - HomeServer (Ubuntu 24.04)"></a>Node 1 - HomeServer (Ubuntu 24.04)</h3><p><strong>NAS (Network Attached Storage): Samba</strong></p>
+<p>I’ve setup <strong>Samba</strong> for file sharing and storing. The tricky part was configuring it to play nice with both my PC and Apple Devices. Apple devices tend to cut off connections randomly. I’ve created a Github Repository where all my config files and step-by-step guide are stored.</p>
+<p><strong>Ad-Blocker: Pi-Hole</strong></p>
+<p><strong>Pi-Hole</strong> is my weapon of choice for ad-blocking. It is a very popular choice among the homelabbing community because it’s easy to setup and beginner friendly.<br>This not only allows me to block ads but to block websites as well. Giving me the ability to control what I want to access or not.</p>
+<p><strong>VPN (Virtual Private Network): Tailscale</strong></p>
+<p>For my VPN, I used <strong>Tailscale</strong> because it’s very easy to install and use. It has an app and allows a seamless account authentication via Google.</p>
+<p>The VPN allows me to access my server including my files and have an ad-blocker from anywhere. It’s a very nice-to-have in your server.</p>
+<p><strong>I’ve documented every command, config file I used. You can find the full technical breakdown here:</strong> <a target="_blank" rel="noopener" href="https://github.com/anthnyjhn/first-server-config-files">Setup guide on Github</a>.</p>
+<h3 id="Node-2-WebServer-Ubuntu-24-04"><a href="#Node-2-WebServer-Ubuntu-24-04" class="headerlink" title="Node 2 - WebServer (Ubuntu 24.04)"></a>Node 2 - WebServer (Ubuntu 24.04)</h3><p><strong>DevOps</strong></p>
+<p>I installed <strong>Docker</strong> to run my apps in containers. This made it much easier to spin up services, test projects, and deploy them. I’ve also configured <strong>Nginx</strong> to act as a reverse proxy. This lets multiple apps run on the same server while each one is accessible through its own domain or subdomain.</p>
+<h2 id="Power-Efficiency"><a href="#Power-Efficiency" class="headerlink" title="Power Efficiency"></a>Power Efficiency</h2><img src="./server-powerdraw.jpg" alt="Description" />
+
+<p>One of my main concerns was how much this would cost to run 24&#x2F;7. Surprisingly, the machine is incredibly efficient. It averages a <strong>power draw of just 22W</strong>, totals around <strong>15 kWh per month</strong> which is just about <strong>~AUD $4.60</strong> added to my monthly electricity bill.</p>
+<h2 id="Thoughts"><a href="#Thoughts" class="headerlink" title="Thoughts"></a>Thoughts</h2><p>I’ve been using this server for the past month and it hasn’t given me any headache yet <em>*knock on wood</em>. Jokes aside, I think it’s very much worth its price considering the services it provides.</p>
+<p>If you have been thinking about starting a homelab, I highly suggest you do it ASAP. Not only you learn a lot from it but you get to own your own data and not solely rely on gigantic tech companies.</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://blog.anthnyjhn.com/my-first-home-server/index/" data-id="cuidyHFcLp_x6XyoaiWhsKHH0" data-title="My First Home Server" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Homelab/" rel="tag">Homelab</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Proxmox/" rel="tag">Proxmox</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Networking/">Networking</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Homelab/" rel="tag">Homelab</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Proxmox/" rel="tag">Proxmox</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Homelab/" style="font-size: 10px;">Homelab</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/Proxmox/" style="font-size: 10px;">Proxmox</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/11/">November 2025</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/my-first-home-server/index/">My First Home Server</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2026 John Caronongan<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>
