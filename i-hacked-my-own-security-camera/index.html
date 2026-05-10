@@ -4,15 +4,25 @@
   <meta charset="utf-8">
   
   
-  <title>John C.</title>
+  <title>I hacked my own Security Camera | John C.</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="John C.">
-<meta property="og:url" content="https://blog.anthnyjhn.com/">
+  <meta name="description" content="If you have an IP camera someone could be watching you. One of the things drilled into me during my SWE30011 IoT Programming unit is that IoT devices are naturally vulnerable to threats. My IP camera">
+<meta property="og:type" content="article">
+<meta property="og:title" content="I hacked my own Security Camera">
+<meta property="og:url" content="https://blog.anthnyjhn.com/i-hacked-my-own-security-camera/">
 <meta property="og:site_name" content="John C.">
+<meta property="og:description" content="If you have an IP camera someone could be watching you. One of the things drilled into me during my SWE30011 IoT Programming unit is that IoT devices are naturally vulnerable to threats. My IP camera">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://blog.anthnyjhn.com/i-hacked-my-own-security-camera/camera.jpeg">
+<meta property="og:image" content="https://blog.anthnyjhn.com/i-hacked-my-own-security-camera/image.png">
+<meta property="article:published_time" content="2026-01-25T17:34:05.000Z">
+<meta property="article:modified_time" content="2026-05-10T14:21:01.058Z">
 <meta property="article:author" content="John Caronongan">
+<meta property="article:tag" content="cybersecurity">
+<meta property="article:tag" content="networking">
+<meta property="article:tag" content="nmap">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://blog.anthnyjhn.com/i-hacked-my-own-security-camera/camera.jpeg">
   
     <link rel="alternate" href="/atom.xml" title="John C." type="application/atom+xml">
   
@@ -69,9 +79,7 @@
 </header>
 
       <div class="outer">
-        <section id="main">
-  
-    <article id="post-i-hacked-my-own-security-camera" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+        <section id="main"><article id="post-i-hacked-my-own-security-camera" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/i-hacked-my-own-security-camera/" class="article-date">
   <time class="dt-published" datetime="2026-01-25T17:34:05.000Z" itemprop="datePublished">2026-01-26</time>
@@ -88,8 +96,8 @@
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/i-hacked-my-own-security-camera/">I hacked my own Security Camera</a>
+    <h1 class="p-name article-title" itemprop="headline name">
+      I hacked my own Security Camera
     </h1>
   
 
@@ -100,11 +108,26 @@
         <p><img src="/./i-hacked-my-own-security-camera/camera.jpeg" alt="YCC360 IP Camera"></p>
 <p>If you have an IP camera someone could be watching you.</p>
 <p>One of the things drilled into me during my SWE30011 IoT Programming unit is that IoT devices are naturally vulnerable to threats. My IP camera, for instance, requires an account to access through its app, so on the surface, it feels safe enough. But I got curious. What’s actually going on under the hood?</p>
-        
-          <p class="article-more-link">
-            <a href="/i-hacked-my-own-security-camera/#more">Read More</a>
-          </p>
-        
+<span id="more"></span>
+
+<p>So I grabbed my laptop and ran a quick port scan against the camera’s local IP address.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmap x.x.x.x <span class="comment"># camera&#x27;s local ip address</span></span><br></pre></td></tr></table></figure>
+
+<p>Among the results was port 554.The default port for RTSP (Real Time Streaming Protocol). RTSP is the protocol that handles live video and audio streams. It should either be closed entirely or locked behind authentication. Mine was wide open.</p>
+<p>A bit of Googling led me to an article from SportRadar <a target="_blank" rel="noopener" href="https://help.nsoft.vision/hc/en-us/articles/4411595651345-List-of-RTSP-URLs-of-security-camera-manufacturers">here</a> of RTSP stream URLs for various security camera manufacturers. I started feeding them one by one into ffplay and hoping for the best.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ffplay -rtsp_transport tcp rtsp://x.x.x.x:554/Streaming/Channels/101</span><br></pre></td></tr></table></figure>
+
+<p>It worked. My own camera’s live feed, streaming directly to my laptop. No login. No prompt. Nothing.</p>
+<p><img src="/./i-hacked-my-own-security-camera/image.png" alt="Camera Video Feed"></p>
+<h2 id="Why-Does-This-Happen"><a href="#Why-Does-This-Happen" class="headerlink" title="Why Does This Happen?"></a>Why Does This Happen?</h2><p>The short answer: cost-cutting and sloppy engineering. Manufacturers rush these devices to market with the bare minimum. A working app, a decent enough UI and security becomes an afterthought. Leaving RTSP unauthenticated isn’t a bug they missed. It’s a corner they chose not to care about.</p>
+<h2 id="What-I-Can-Do-About-It"><a href="#What-I-Can-Do-About-It" class="headerlink" title="What I Can Do About It"></a>What I Can Do About It</h2><ul>
+<li><p><strong>Option 1 — Isolate the camera on its own virtual router.</strong> This keeps the camera on a separate network segment so that no one is able to connect to the virtual router it is connected to. No local connection &#x3D; safe :)</p>
+</li>
+<li><p><strong>Option 2 — Replace the camera and get a reputable ip camera brand.</strong> It might just be time to replace it with something from a manufacturer that actually takes security seriously.</p>
+</li>
+</ul>
+<p>The scariest part of all this isn’t that I found the vulnerability. It’s how easy it was.</p>
+
       
     </div>
     <footer class="article-footer">
@@ -117,62 +140,19 @@
     </footer>
   </div>
   
-</article>
-
-
-
+    
+<nav id="article-nav">
   
-    <article id="post-my-first-home-server" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/my-first-home-server/" class="article-date">
-  <time class="dt-published" datetime="2025-11-29T11:27:03.000Z" itemprop="datePublished">2025-11-29</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Networking/">Networking</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
   
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/my-first-home-server/">My First Home Server</a>
-    </h1>
+    <a href="/my-first-home-server/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">My First Home Server</div>
+    </a>
   
+</nav>
 
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p><img src="/./my-first-home-server/hpProdesk.jpg" alt="HP Prodesk 400 G2"></p>
-<p>As a student, I’ve always used Google Drive and iCloud for cloud storage but I quickly realized that I have no control of my own data and I’m tied to these cloud platforms. So, I started searching on how to make my own cloud storage. That’s when I got hooked into homelabbing.</p>
-<p>Homelabbing is a hobby of building and managing personal server infrastrature. For me, that sounded fun and challenging so I started looking for the hardware that I’m going to start with.</p>
-        
-          <p class="article-more-link">
-            <a href="/my-first-home-server/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://blog.anthnyjhn.com/my-first-home-server/" data-id="cuidL7LRWafDutgZwUa8m-8Vk" data-title="My First Home Server" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Homelab/" rel="tag">Homelab</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Proxmox/" rel="tag">Proxmox</a></li></ul>
-
-    </footer>
-  </div>
   
 </article>
-
-
-
-  
 
 
 </section>
